@@ -9,4 +9,3 @@ Gabriel Concli
 Luigi Ambos
 Gilmar Jr 
 Gustavo Rodrigues
-Lucas Hartmann
