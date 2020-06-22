@@ -4,3 +4,16 @@
 dist/
 build/
 .env*
+
+*.class
+*.ctxt
+.mtj.tmp/
+*.jar
+*.war
+*.ear
+hs_err_pid*
+*.gradle
+/build/
+*gradle-app.setting
+!gradle-wrapper.jar
+.gradletasknamecache
