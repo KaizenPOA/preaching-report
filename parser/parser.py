@@ -1,15 +1,6 @@
 import re
+from data import report_fields
 from fuzzywuzzy import fuzz, process
-
-report_fields = [
-    "nome",
-    "obs",
-    "publicacoes",
-    "videos",
-    "horas",
-    "revisitas",
-    "estudos",
-]
 
 
 def extract_from_lines(lines):

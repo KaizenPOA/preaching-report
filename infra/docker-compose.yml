@@ -1,0 +1,8 @@
+version: '2.0'
+services:
+  queue:
+    image: softwaremill/elasticmq
+    ports:
+      - '9324:9324'
+    volumes:
+      - ./queue/elasticmq.conf:/elasticmq.conf

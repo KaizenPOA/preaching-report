@@ -13,10 +13,12 @@
     <section class="container">
       {% include "text-form.html" %}
       <!-- {% if not session.logged_in %}
-      <a href="{{ url_for('login') }}">log in</a>
-      {% else %}
-      <a href="{{ url_for('logout') }}">log out</a>
-      {% endif %} -->
+        <a href="{{ url_for('login') }}">log in</a>
+        {% else %}
+        <a href="{{ url_for('logout') }}">log out</a>
+        {% endif %} -->
+
+      {% include "message.html" %}
     </section>
   </body>
 </html>

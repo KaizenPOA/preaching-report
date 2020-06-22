@@ -1,22 +1,23 @@
 <section>
-  <form method="POST" action="/report-text">
+  <form method="POST" action="/report">
     <p>
-      <label for="mes">
+      <label for="month">
         <span>Mês</span>
-        <select name="mes">
-          {% for mes in meses %} <option value="{{ loop.index }}" {{
-          'selected=selected' if mes_relatorio == loop.index else '' }} > {{ mes
-          }} {% endfor %}
+        <select name="month">
+          {% for m in months %}
+            <option value="{{ loop.index }}" {{ 'selected=selected' if mes == loop.index else '' }}>
+              {{ m }}
+          {% endfor %}
         </select>
       </label>
     </p>
     <p>
-      <label for="relatorio">
+      <label for="report">
         <span>Dados do relatório:</span>
-        <textarea rows="10" name="relatorio">
-Nome:&#013;Publicações:&#013;Vídeos:&#013;Horas:&#013;Revisitas:&#013;Estudos:&#013;Obs:
-    </textarea
-        >
+        <br />
+        <textarea rows="10" name="report">
+{{ report if report else "Nome:\nPublicações:\nVídeos:\nHoras:\nRevisitas:\nEstudos:\nObs:" }}
+        </textarea>
       </label>
     </p>
     <button type="submit">Enviar</button>
