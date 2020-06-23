@@ -5,4 +5,4 @@ services:
     ports:
       - '9324:9324'
     volumes:
-      - ./queue/elasticmq.conf:/elasticmq.conf
+      - ./elasticmq.conf:/elasticmq.conf
