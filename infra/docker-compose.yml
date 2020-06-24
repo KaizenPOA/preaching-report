@@ -1,8 +1,20 @@
-version: '2.0'
+version: "2.0"
 services:
   queue:
     image: softwaremill/elasticmq
     ports:
-      - '9324:9324'
+      - "9324:9324"
     volumes:
-      - ./elasticmq.conf:/elasticmq.conf
+      - ./elasticmq.conf:/opt/elasticmq.conf
+  parser:
+    build:
+      context: ../
+      dockerfile: ./infra/parser.Dockerfile
+    ports:
+      - "5000:5000"
+    env_file:
+      - ../parser/.env
+    environment:
+      - SQS_ENDPOINT_URL=http://queue:9324
+    depends_on:
+      - queue

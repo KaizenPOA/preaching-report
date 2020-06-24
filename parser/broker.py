@@ -6,7 +6,8 @@ sqs = boto3.client('sqs',
                    endpoint_url=os.getenv('SQS_ENDPOINT_URL'),
                    region_name=os.getenv('AWS_REGION'),
                    use_ssl=False)
-response = sqs.create_queue(QueueName=os.getenv('SQS_QUEUE_NAME'))
+print('Looking for queue: ' + os.getenv('SQS_QUEUE_NAME'))
+response = sqs.get_queue_url(QueueName=os.getenv('SQS_QUEUE_NAME'))
 
 
 def publish(message):
