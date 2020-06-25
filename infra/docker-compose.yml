@@ -1,20 +1,45 @@
-version: "2.0"
+version: '2.0'
 services:
+  # Infrastructure
+  ## Messaging
   queue:
     image: softwaremill/elasticmq
     ports:
-      - "9324:9324"
+      - '9324:9324'
     volumes:
       - ./elasticmq.conf:/opt/elasticmq.conf
+  ## Publishers Service
+  publishers-db:
+    image: postgres:alpine
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_DB: publishers
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: P@ssw0rd
+  publishers:
+    build:
+      context: ../
+      dockerfile: ./infra/publishers.Dockerfile
+    ports:
+      - '5001:5001'
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/publishers
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: P@ssw0rd
+    depends_on:
+      - publishers-db
+
   parser:
     build:
       context: ../
       dockerfile: ./infra/parser.Dockerfile
     ports:
-      - "5000:5000"
+      - '5000:5000'
     env_file:
       - ../parser/.env
     environment:
-      - SQS_ENDPOINT_URL=http://queue:9324
+      SQS_ENDPOINT_URL: http://queue:9324
     depends_on:
       - queue
