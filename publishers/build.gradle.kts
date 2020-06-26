@@ -1,16 +1,20 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import com.github.jengelman.gradle.plugins.shadow.transformers.PropertiesFileTransformer
 
 plugins {
 	id("org.springframework.boot") version "2.3.1.RELEASE"
 	id("io.spring.dependency-management") version "1.0.9.RELEASE"
 	kotlin("jvm") version "1.3.72"
 	kotlin("plugin.spring") version "1.3.72"
-        idea
 	id("org.flywaydb.flyway") version "6.4.4"
 	id("com.github.johnrengelman.shadow") version "6.0.0"
+	id("org.jetbrains.kotlin.plugin.jpa") version "1.3.72"
+	idea
+	application
 }
 
-group = "org.kaizenpoa"
+group = "org"
 version = ""
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
@@ -40,4 +44,8 @@ tasks.withType<KotlinCompile> {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
 		jvmTarget = "1.8"
 	}
+}
+
+application {
+	mainClassName = "org.publishers.PublishersApplicationKt"
 }
